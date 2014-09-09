@@ -1,0 +1,25 @@
+<% if @comment -%>
+# <%= comment %>
+<% end -%>
+[<%= repositoryid %>]
+<% if @descr -%>
+name=<%= descr %>
+<% end -%>
+<% if not @baseurl.empty? -%>
+baseurl=<%= @baseurl.join(' ') %>
+<% end -%>
+<% if @mirrorlist %>
+mirrorlist=<%= mirrorlist  %>
+<% end -%>
+<% if @failovermethod -%>
+failovermethod=<%= failovermethod  %>
+<% end -%>
+<% if @enabled -%>
+enabled=<%= enabled %>
+<% end -%>
+<% if @gpgcheck -%>
+gpgcheck=<%= gpgcheck %>
+<% end -%>
+<% if not @gpgkey.empty? -%>
+gpgkey=<%= @gpgkey.join(' ') %>
+<% end -%>

@@ -1,0 +1,24 @@
+#
+define yum::rpmkey (
+  $source = undef,
+  $path   = "/etc/pki/rpm-gpg/${title}",
+  $action = 'import',
+) {
+
+  file { "${path}":
+    ensure => file,
+    owner  => root,
+    group  => root,
+    mode   => '0644',
+    source => $source,
+  }
+
+  if $action == 'import' {
+    exec { "${path}":
+      path    => '/bin:/usr/bin',
+      command => "rpm --import ${path}",
+    }
+  }
+
+  File["${path}"]->Exec["${path}"]
+}
